@@ -1,0 +1,22 @@
+{
+  "name": "fruitsproject",
+  "version": "1.0.0",
+  "description": "Integrating MongoDB with node.js using the driver. Making a db with fruits and how I've rated them",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cameron327/FruitsProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cameron327/FruitsProject/issues"
+  },
+  "homepage": "https://github.com/Cameron327/FruitsProject#readme",
+  "dependencies": {
+    "mongodb": "^3.6.6"
+  }
+}
