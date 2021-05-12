@@ -1,42 +1,11 @@
 // jshint esversion:6
 
-const MongoClient = require('mongodb').MongoClient;
-// everything that you see with assert always has to do with testing
-// here, we are using it to validate our connection to the mongodb database
-const assert = require ('assert');
+const mongoose = require('mongoose');
 
-// connection url
-// this is always the port number
-const url = 'mongodb://localhost:27017';
+// this line establishes the connection and then creates the db
+// this line replaces the whole client.connect from the drive version
+mongoose.connect("mongodb://localhost:27017/fruitsDB")
 
-// databse name
-const dbName = 'fruitsDB';
-
-// create a new mongo client
-// those use things at the end were added in later on because of a depracation error
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
-// this mongo client will connect to our mongodb database "fruitsDB". If it doesn't exist, it will create it.
-
-// use connect method to connect to the server
-client.connect(function(err) {
-    assert.equal(null, err);
-    console.log("Successfully connected to server");
-
-    const db = client.db(dbName);
-    
-    // call the insertDocuments function and only close when it's done
-    // insertDocuments(db, function() {
-    //     client.close();
-    // });
-
-    // done with inserting so now we just want to find them
-    // call the findDocuments function
-    findDocuments(db, function() {
-        // then close when done
-        client.close();
-    });
-        
-});
 
 // all of the above code is the equivalent of just doing "use fruitsDB" in the mongo shell
 
