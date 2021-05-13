@@ -36,7 +36,7 @@ const person = new Person({
     name: "John",
     age: 27
 });
-person.save();
+// person.save();
 
 const kiwi = new Fruit ({
     name: "Kiwi",
@@ -54,26 +54,22 @@ const banana = new Fruit ({
     review: "Great"
 });
 
-Fruit.insertMany([kiwi, orange, banana], function(err){
-    if (err){
+// Fruit.insertMany([kiwi, orange, banana], function(err){
+//     if (err){
+//         console.log(err);
+//     } else {
+//         console.log("Successfully added all fruits to the fruitsDB");
+//     }
+// });
+
+// the read method that uses a callback function to retrieve the results
+Fruit.find(function(err, fruits){
+    if (err) {
         console.log(err);
     } else {
-        console.log("Successfully added all fruits to the fruitsDB");
+        fruits.forEach(function(fruit){
+            console.log(fruit.name);
+        });
+        mongoose.connection.close();
     }
 });
-
-
-// this function will find the documents from our node.js app
-const findDocuments = function(db, callback) {
-    // get the documents collection
-    const collection = db.collection('fruits');
-    // find some documents
-    // it's going to find them and then put them into an array
-    collection.find({}).toArray(function(err, fruits){
-        assert.equal(err,null);
-        console.log("Found the following records");
-        console.log(fruits);
-        callback(fruits);
-    });
-};
-
