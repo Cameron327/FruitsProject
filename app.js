@@ -31,16 +31,48 @@ const fruit = new Fruit ({
 
 const personSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favoriteFruit: fruitSchema,
 });
 
 const Person = mongoose.model("Person", personSchema);
 
-const person = new Person({
-    name: "John",
-    age: 27
+const pineapple = new Fruit({
+    name: "Pineapple",
+    score: 9,
+    review: "Great fruit"
 });
+pineapple.save();
+
+const mango = new Fruit({
+    name: "Mango",
+    score: 10,
+    review: "Great fruit"
+});
+mango.save();
+
+Person.updateOne({name: "John"}, {favoriteFruit: mango}, function(err){
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Successfully updated!");
+    }
+})
+
+
+
+// const person = new Person({
+//     name: "John",
+//     age: 27
+// });
 // person.save();
+
+const amy = new Person({
+    name: "Amy",
+    age: 19,
+    favoriteFruit: pineapple
+});
+// amy.save();
 
 
 // the read method that uses a callback function to retrieve the results
